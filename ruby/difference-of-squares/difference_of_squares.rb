@@ -4,19 +4,11 @@ class Squares
   end
 
   def square_of_sums
-   total = 0
-   (1..@n).each do |n|
-     total += n
-   end
-   total ** 2
+   (1..@n).inject { |sum , n| sum += n } ** 2
   end
 
   def sum_of_squares
-    total = 0
-    (1..@n).each do |n|
-      total += n ** 2
-    end
-    total
+    (1..@n).inject { |sum, n| sum += n ** 2 }
   end
 
   def difference
