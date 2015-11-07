@@ -1,19 +1,28 @@
 class Fixnum
   DIGIT_TO_R = {
-    1 => "I",
-    2 => "II",
-    3 => "III",
-    4 => "IV",
-    5 => "V",
+    10 => "X",
     9 => "IX",
-    10 => "X"
+    5 => "V",
+    4 => "IV",
+    3 => "III",
+    2 => "II",
+    1 => "I"
   }
 
   DIGITS = [1, 2, 3, 4, 5, 9, 10]
 
   def to_roman
-    
-    DIGIT_TO_R[self]
+    arabic_input = self
+    roman_output = ""
+    until arabic_input == 0
+      DIGIT_TO_R.each do |ar, rom|
+	if arabic_input >= ar
+	  roman_output << rom
+	  arabic_input -= ar
+	end
+      end
+    end
+    roman_output
   end
 end
 
