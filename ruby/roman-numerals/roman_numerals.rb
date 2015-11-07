@@ -20,10 +20,10 @@ class Fixnum
     roman_output = ""
     until arabic_input == 0
       DIGIT_TO_R.each do |ar, rom|
-	until arabic_input < ar
-	  roman_output << rom
-	  arabic_input -= ar
-	end
+        until arabic_input < ar
+          roman_output << rom
+          arabic_input -= ar
+        end
       end
     end
     roman_output
