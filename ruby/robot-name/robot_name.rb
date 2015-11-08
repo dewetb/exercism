@@ -7,6 +7,6 @@ class Robot
 
   def reset
     @name = @@current_name
-    @@current_name.next!
+    @@current_name = @@current_name.next
   end
 end
