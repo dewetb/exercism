@@ -9,9 +9,10 @@ class Phrase
   def word_count
     strip_quotes = @phrase.gsub(/ '|' /, ' ')
     word_array = strip_quotes.downcase.scan(/[\w']+/)
-    grouped = word_array.group_by { |word| word }
-    counted = {}
-    grouped.each { |k, v| counted[k] = v.length }
+    counted = Hash.new(0)
+    word_array.each do |word|
+      counted[word] += 1
+    end
     counted
   end
 end
