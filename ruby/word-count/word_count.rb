@@ -1,3 +1,5 @@
+require 'pry'
+
 class Phrase
   VERSION = 1
   def initialize(phrase)
@@ -5,12 +7,9 @@ class Phrase
   end
 
   def word_count
-    commas_to_space = @phrase.gsub(',', ' ')
-    strip_quotes = commas_to_space.gsub(/ '|' /, ' ')
-    strip_punctuation = strip_quotes.downcase.gsub(/[^a-z0-9'\s]/i, '')
-    word_array = strip_punctuation.split(/[\s, ]/)
-    no_empties = word_array.reject { |s| s.empty? }
-    grouped = no_empties.group_by { |word| word }
+    strip_quotes = @phrase.gsub(/ '|' /, ' ')
+    word_array = strip_quotes.downcase.scan(/[\w']+/)
+    grouped = word_array.group_by { |word| word }
     counted = {}
     grouped.each { |k, v| counted[k] = v.length }
     counted
