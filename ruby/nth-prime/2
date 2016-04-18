@@ -2,7 +2,7 @@ class Prime
   def self.nth(n)
     raise ArgumentError if n == 0
     i = 1
-    c = 0
+    c = 1
     until c == n
       i += 1
       c += 1 if Prime.prime?(i)
