@@ -11,9 +11,6 @@ class Prime
   end
 
   def self.prime?(n)
-    2.upto(n/2) do |i|
-      return false if n % i == 0
-    end
-    true
+    2.upto(Math.sqrt(n)).all? { |i| n % i != 0 }
   end
 end
