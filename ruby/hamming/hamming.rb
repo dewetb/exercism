@@ -1,9 +1,9 @@
 class Hamming
   def self.compute(a, b)
-    count = 0
-    a.length.times do |i|
-      count += 1 unless a[i] == b[i]
+    zipped = a.chars.zip(b.chars)
+    zipped.inject(0) do |sum, set|
+      sum += 1 if set[0] != set[1]
+      sum
     end
-    count
   end
 end
