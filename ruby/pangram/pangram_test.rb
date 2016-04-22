@@ -32,7 +32,11 @@ class PangramTest < Minitest::Test
     assert Pangram.is_pangram?(str)
   end
 
-  # Problems in exercism evolve over time,
+  def test_numbers_and_underscore
+    str = 'qwertyuiopasdfghjklz_12345'
+    refute Pangram.is_pangram?(str)
+  end
+
   # as we find better ways to ask questions.
   # The version number refers to the version of the problem you solved,
   # not your solution.
