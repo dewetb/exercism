@@ -11,17 +11,18 @@ class FoodChain
     "What a hog, to swallow a dog!\n",
     "Just opened her throat and swallowed a goat!\n",
     "I don't know how she swallowed a cow!\n",
-    "She's dead, of course!\n"
   ]
 
   def self.song
     song = ""
-    0.upto(7) do |i|
+    0.upto(6) do |i|
       song << i_know(i)
       song << post_swallow(i)
       song << explanation(i)
       song << "I don't know why she swallowed the fly. Perhaps she'll die.\n\n"
     end
+    song << i_know(7)
+    song << "She's dead, of course!\n"
     song
   end
 
@@ -35,7 +36,7 @@ class FoodChain
 
   def self.explanation(i)
     explanation = ""
-    if i > 0 && i < 7
+    if i > 0
       i.downto(1) do |n|
         explanation << "She swallowed the #{ANIMALS[n]} to catch the #{ANIMALS[n - 1]}"
 	explanation << " that wriggled and jiggled and tickled inside her" if n == 2
