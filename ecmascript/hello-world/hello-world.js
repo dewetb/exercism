@@ -5,9 +5,10 @@
 
 class HelloWorld {
   hello(name) {
-    //
-    // YOUR CODE GOES HERE
-    //
+    if (name)
+      return `Hello, ${name}!`
+    else
+      return "Hello, World!"
   }
 }
 

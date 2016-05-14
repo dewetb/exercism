@@ -1,4 +1,3 @@
-require 'pry'
 class RunLengthEncoding
   VERSION = 1
   def self.encode(plain)
