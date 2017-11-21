@@ -19,12 +19,12 @@ describe('Transcriptor', () => {
     expect(transcriptor.toRna('T')).toEqual('A');
   });
 
-  xtest('transcribes all dna nucleotides to their rna complements', () => {
+  test('transcribes all dna nucleotides to their rna complements', () => {
     expect(transcriptor.toRna('ACGTGGTCTTAA'))
         .toEqual('UGCACCAGAAUU');
   });
 
-  xtest('correctly handles invalid input', () => {
+  test('correctly handles invalid input', () => {
     expect(() => transcriptor.toRna('U')).toThrow(
       new Error('Invalid input DNA.'),
     );
