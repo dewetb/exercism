@@ -10,7 +10,7 @@ class Transcriptor {
       }, this);
       return rnaChars.join('');
     } else {
-      throw new Error('[Error: Invalid input DNA.]');
+      throw new Error('Invalid input DNA.');
     }
   }
 
