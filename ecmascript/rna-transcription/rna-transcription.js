@@ -1,4 +1,13 @@
 class Transcriptor {
+  constructor() {
+    this.conversionMap = {
+      'G': 'C',
+      'C': 'G',
+      'T': 'A',
+      'A': 'U',
+    }
+  }
+
   toRna(dna) {
     let dnaChars = [...dna];
     if (this.validInput(dnaChars)) {
@@ -10,26 +19,13 @@ class Transcriptor {
   }
 
   validInput(dnaChars) {
-    return (dnaChars.every(elem => this.conversionMap().has(elem)))
+    return (dnaChars.every(elem => (elem in this.conversionMap)))
   }
 
   convertString(dnaChars) {
     return dnaChars.map(function(dnaChar) {
-      return this.convertChar(dnaChar);
+      return this.conversionMap[dnaChar];
     }, this);
-  }
-
-  conversionMap(dna) {
-    var map = new Map()
-    map.set('G', 'C')
-    map.set('C', 'G')
-    map.set('T', 'A')
-    map.set('A', 'U')
-    return map;
-  }
-
-  convertChar(dnaChar) {
-    return this.conversionMap().get(dnaChar);
   }
 }
 
