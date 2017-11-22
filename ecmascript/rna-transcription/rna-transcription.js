@@ -11,7 +11,7 @@ class Transcriptor {
   toRna(dna) {
     let dnaChars = [...dna];
     if (this.validInput(dnaChars)) {
-      var rnaChars = this.convertString(dnaChars);
+      var rnaChars = this.convertArr(dnaChars);
       return rnaChars.join('');
     } else {
       throw new Error('Invalid input DNA.');
@@ -22,7 +22,7 @@ class Transcriptor {
     return (dnaChars.every(elem => (elem in this.conversionMap)))
   }
 
-  convertString(dnaChars) {
+  convertArr(dnaChars) {
     return dnaChars.map(function(dnaChar) {
       return this.conversionMap[dnaChar];
     }, this);
