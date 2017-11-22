@@ -1,10 +1,7 @@
 class Transcriptor {
   toRna(dna) {
-//    return this.transMap(dna);
     let dnaChars = [...dna];
-//    console.log(this.transMap().has('G'));
-//    console.log(dnaChars.every(elem => this.transMap().keys().indexOf(elem) > -1));
-    if (dnaChars.every(elem => this.transMap().has(elem))) {
+    if (dnaChars.every(elem => this.conversionMap().has(elem))) {
       var rnaChars = dnaChars.map(function(dnaChar) {
         return this.charConvert(dnaChar);
       }, this);
@@ -14,7 +11,7 @@ class Transcriptor {
     }
   }
 
-  transMap(dna) {
+  conversionMap(dna) {
     var map = new Map()
     map.set('G', 'C')
     map.set('C', 'G')
@@ -23,8 +20,8 @@ class Transcriptor {
     return map;
   }
 
-  charConvert(dna) {
-    return this.transMap().get(dna);
+  charConvert(dnaChar) {
+    return this.conversionMap().get(dnaChar);
   }
 }
 
