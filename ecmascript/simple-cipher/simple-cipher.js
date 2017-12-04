@@ -11,30 +11,26 @@ class Cipher {
   }
 
   encode(plain) {
-    let plainArr = [...plain]
-    let encryptedArr = plainArr.map(function(plainChar, index) {
-      let plainNum = this.letterToNumber(plainChar);
-      let encryptedNum = plainNum + this.numKey()[index];
-      return this.numberToLetter(encryptedNum);
-    }, this);
-    return encryptedArr.join('');
+    return this.convert(plain, this.shiftEncode.bind(this));
   }
 
-  decode(input) {
+  decode(code) {
+    return this.convert(code, this.shiftDecode.bind(this));
+  }
+
+  shiftDecode(inputNum, index) {
+    return inputNum - this.numKey()[index];
+  }
+
+  shiftEncode(inputNum, index) {
+    return inputNum + this.numKey()[index];
+  }
+
+  convert(input, shiftFunction) {
     let inputArr = [...input]
     let outputArr = inputArr.map(function(inputChar, index) {
       let inputNum = this.letterToNumber(inputChar);
-      let outputNum = inputNum - this.numKey()[index];
-      return this.numberToLetter(outputNum);
-    }, this);
-    return outputArr.join('');
-  }
-
-  convert(input) {
-    let inputArr = [...input]
-    let outputArr = inputArr.map(function(inputChar, index) {
-      let inputNum = this.letterToNumber(inputChar);
-      let outputNum = inputNum - this.numKey()[index];
+      let outputNum = shiftFunction(inputNum, index);
       return this.numberToLetter(outputNum);
     }, this);
     return outputArr.join('');
