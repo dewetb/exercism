@@ -1,6 +1,10 @@
 class Cipher {
-  constructor() {
-    this.key = 'bcbbbbbbbb'
+  constructor(key='bcbbbbbbbb') {
+    if (key === key.toUpperCase()) {
+      throw new Error('Bad key');
+    } else {
+      this.key = key;
+    }
   }
 
   numKey() {
