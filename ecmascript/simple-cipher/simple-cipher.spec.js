@@ -10,34 +10,34 @@ describe('Random key cipher', () => {
   // Here we take advantage of the fact that plaintext of "aaa..."
   // outputs the key. This is a critical problem with shift ciphers, some
   // characters will always output the key verbatim.
-  test('can encode', () => {
+  xtest('can encode', () => {
     expect(cipher.encode('aaaaaaaaaa')).toEqual(cipher.key.substr(0, 10));
   });
 
-  test('can decode', () => {
+  xtest('can decode', () => {
     expect(cipher.decode(cipher.key.substr(0, 10))).toEqual('aaaaaaaaaa');
   });
 
-  test('is reversible', () => {
+  xtest('is reversible', () => {
     const plaintext = 'abcdefghij';
     expect(cipher.decode(cipher.encode(plaintext))).toEqual(plaintext);
   });
 });
 
 describe('Incorrect key cipher', () => {
-  test('throws an error with an all caps key', () => {
+  xtest('throws an error with an all caps key', () => {
     expect(() => {
       new Cipher('ABCDEF');
     }).toThrow(new Error('Bad key'));
   });
 
-  test('throws an error with a numeric key', () => {
+  xtest('throws an error with a numeric key', () => {
     expect(() => {
       new Cipher('12345');
     }).toThrow(new Error('Bad key'));
   });
 
-  test('throws an error with an empty key', () => {
+  xtest('throws an error with an empty key', () => {
     expect(() => {
       new Cipher('');
     }).toThrow(new Error('Bad key'));
@@ -48,19 +48,19 @@ describe('Substitution cipher', () => {
   const key = 'abcdefghij';
   const cipher = new Cipher(key);
 
-  test('keeps the submitted key', () => {
+  xtest('keeps the submitted key', () => {
     expect(cipher.key).toEqual(key);
   });
 
-  test('can encode', () => {
+  xtest('can encode', () => {
     expect(cipher.encode('aaaaaaaaaa')).toEqual('abcdefghij');
   });
 
-  test('can decode', () => {
+  xtest('can decode', () => {
     expect(cipher.decode('abcdefghij')).toEqual('aaaaaaaaaa');
   });
 
-  test('is reversible', () => {
+  xtest('is reversible', () => {
     expect(cipher.decode(cipher.encode('abcdefghij'))).toEqual('abcdefghij');
   });
 
