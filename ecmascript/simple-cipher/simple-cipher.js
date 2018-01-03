@@ -11,6 +11,11 @@ class Cipher {
     return this.key.split('').map(letter => this.letterToNumber(letter));
   }
 
+  wrappedIndex(index) {
+    let keyLength = this.keyArrNumbers().length;
+    return index % keyLength;
+  }
+
   encode(plain) {
     return this.convert(plain, this.numberEncoder.bind(this));
   }
@@ -23,7 +28,7 @@ class Cipher {
     let encodedArr = input.split('');
     let plainArr = encodedArr.map(function(char, index) {
       let inputNum = this.letterToNumber(char);
-      let diff = this.keyArrNumbers()[index];
+      let diff = this.keyArrNumbers()[this.wrappedIndex(index)];
       let outputLetter = conversionFunc(inputNum, diff);
       return outputLetter;
     }, this)
@@ -31,11 +36,21 @@ class Cipher {
   }
 
   numberDecoder(encodedNum, diff) {
-    return this.numberToLetter(encodedNum - diff);
+    let number = encodedNum - diff
+    if (number < 0) {
+      return this.numberToLetter(number + 26);
+    } else {
+      return this.numberToLetter(number);
+    }
   }
 
   numberEncoder(decodedNum, diff) {
-    return this.numberToLetter(decodedNum + diff);
+    let number = decodedNum + diff
+    if (number > 25) {
+      return this.numberToLetter(number - 26);
+    } else {
+      return this.numberToLetter(number);
+    }
   }
 
   letterToNumber(letter) {
