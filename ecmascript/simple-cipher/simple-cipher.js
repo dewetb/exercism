@@ -5,25 +5,30 @@ class Cipher {
   }
 
   encode(plain) {
-    let plainArr = plain.split('');
-    let encodedArr = plainArr.map(function(char, index) {
-      let inputNum = this.letterToNumber(char);
-      let diff = this.keyArrNumbers[index];
-      let outputLetter = this.numberToLetter(inputNum + diff)
-      return outputLetter;
-    }, this)
-    return encodedArr.join('');
+    return this.convert(plain, this.numberEncoder.bind(this));
   }
 
   decode(encoded) {
-    let encodedArr = encoded.split('');
+    return this.convert(encoded, this.numberDecoder.bind(this));
+  }
+
+  convert(input, conversionFunc) {
+    let encodedArr = input.split('');
     let plainArr = encodedArr.map(function(char, index) {
       let inputNum = this.letterToNumber(char);
       let diff = this.keyArrNumbers[index];
-      let outputLetter = this.numberToLetter(inputNum - diff)
+      let outputLetter = conversionFunc(inputNum, diff);
       return outputLetter;
     }, this)
     return plainArr.join('');
+  }
+
+  numberDecoder(encodedNum, diff) {
+    return this.numberToLetter(encodedNum - diff);
+  }
+
+  numberEncoder(decodedNum, diff) {
+    return this.numberToLetter(decodedNum + diff);
   }
 
   letterToNumber(letter) {
