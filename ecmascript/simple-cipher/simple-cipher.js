@@ -1,7 +1,10 @@
 class Cipher {
-  constructor() {
-    this.key = "bbbbbbbbbbbbbb";
-    this.keyArrNumbers = this.key.split('').map(letter => this.letterToNumber(letter));
+  constructor(key='bbbbbbbbbbbbbbbbb') {
+    this.key = key;
+  }
+
+  keyArrNumbers() {
+    return this.key.split('').map(letter => this.letterToNumber(letter));
   }
 
   encode(plain) {
@@ -16,7 +19,7 @@ class Cipher {
     let encodedArr = input.split('');
     let plainArr = encodedArr.map(function(char, index) {
       let inputNum = this.letterToNumber(char);
-      let diff = this.keyArrNumbers[index];
+      let diff = this.keyArrNumbers()[index];
       let outputLetter = conversionFunc(inputNum, diff);
       return outputLetter;
     }, this)
