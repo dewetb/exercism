@@ -1,6 +1,10 @@
 class Cipher {
   constructor(key='bbbbbbbbbbbbbbbbb') {
-    this.key = key;
+    if (key.match(/^[a-z]+$/)) {
+      this.key = key;
+    } else {
+      throw new Error('Bad key');
+    }
   }
 
   keyArrNumbers() {
