@@ -25,14 +25,14 @@ class Cipher {
   }
 
   convert(input, conversionFunc) {
-    let encodedArr = input.split('');
-    let plainArr = encodedArr.map(function(char, index) {
+    let inputArr = input.split('');
+    let outputArr = inputArr.map(function(char, index) {
       let inputNum = this.letterToNumber(char);
       let diff = this.keyArrNumbers()[this.wrappedIndex(index)];
       let outputLetter = conversionFunc(inputNum, diff);
       return outputLetter;
     }, this)
-    return plainArr.join('');
+    return outputArr.join('');
   }
 
   numberDecoder(encodedNum, diff) {
