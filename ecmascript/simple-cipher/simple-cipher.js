@@ -15,6 +15,17 @@ class Cipher {
     return encodedArr.join('');
   }
 
+  decode(encoded) {
+    let encodedArr = encoded.split('');
+    let plainArr = encodedArr.map(function(char, index) {
+      let inputNum = this.letterToNumber(char);
+      let diff = this.keyArrNumbers[index];
+      let outputLetter = this.numberToLetter(inputNum - diff)
+      return outputLetter;
+    }, this)
+    return plainArr.join('');
+  }
+
   letterToNumber(letter) {
     return letter.charCodeAt(0) - 97;
   }
